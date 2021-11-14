@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_pro/utils/http_mixin.dart';
+import 'package:flutter_pro/utils/http/http_interceptor.dart';
+import 'package:flutter_pro/utils/http/http_mixin.dart';
 import 'package:logger/logger.dart';
 
 class HttpService with HttpMixin {
@@ -8,7 +9,8 @@ class HttpService with HttpMixin {
   late final Logger _logger;
 
   HttpService({this.url}) {
-    _dio = Dio(BaseOptions(baseUrl: url ?? baseUrl));
+    _setupDio();
+
     _logger = Logger();
   }
 
@@ -96,5 +98,10 @@ class HttpService with HttpMixin {
         _logger.d(e.message);
       }
     }
+  }
+
+  _setupDio() {
+    _dio = Dio(BaseOptions(baseUrl: url ?? baseUrl));
+    _dio.interceptors.add(HttpCacheInterceptor());
   }
 }
