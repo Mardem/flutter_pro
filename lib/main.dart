@@ -24,20 +24,20 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Pro',
-      initialRoute: '/',
-      onGenerateRoute: AppRouter.router.generator,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (context) => TodoPresenter(),
-          ),
-        ],
-        child: const WelcomeView(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => TodoPresenter(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Pro',
+        initialRoute: '/',
+        onGenerateRoute: AppRouter.router.generator,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const WelcomeView(),
       ),
     );
   }

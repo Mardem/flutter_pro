@@ -1,18 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pro/services/http_service.dart';
-import 'package:logger/logger.dart';
+import 'package:flutter_pro/router/router.dart';
 
 class WelcomeView extends StatelessWidget {
   const WelcomeView({Key? key}) : super(key: key);
-
-  _loadData() async {
-    HttpService service = HttpService();
-
-    Map res = await service.get(url: '/todos/2');
-
-    Logger logger = Logger();
-    logger.d(res);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +12,8 @@ class WelcomeView extends StatelessWidget {
       ),
       body: Center(
         child: ElevatedButton(
-          child: const Text('Buscar dados'),
-          // onPressed: () => Navigator.pushNamed(context, '/todo'),
-          onPressed: _loadData,
+          child: const Text('Abrir TODO'),
+          onPressed: () => AppRouter.router.navigateTo(context, '/todo'),
         ),
       ),
     );
