@@ -1,7 +1,7 @@
 import 'package:flutter_pro/modules/todo/entity/todo_entity.dart';
 import 'package:flutter_pro/services/http_service.dart';
 
-class TodoListIterator {
+class TodoListIteractor {
   final HttpService _httpService = HttpService();
 
   Future<List<TodoEntity>> fetchList() async {

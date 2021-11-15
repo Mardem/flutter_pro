@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pro/modules/todo/presenter/todo_presenter.dart';
+import 'package:flutter_pro/modules/todo_detail/presenter/todo_detail_presenter.dart';
 import 'package:flutter_pro/modules/welcome/view/welcome_view.dart';
 import 'package:flutter_pro/router/router.dart';
 import 'package:provider/provider.dart';
@@ -28,6 +29,9 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider(
           create: (context) => TodoPresenter(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => TodoDetailPresenter(),
         ),
       ],
       child: MaterialApp(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pro/modules/todo/entity/todo_entity.dart';
 import 'package:flutter_pro/modules/todo/presenter/todo_presenter.dart';
+import 'package:flutter_pro/modules/todo_detail/presenter/todo_detail_presenter.dart';
 import 'package:provider/provider.dart';
 
 class TodoView extends StatelessWidget {
@@ -26,7 +27,7 @@ class TodoView extends StatelessWidget {
             ) {
               switch (snapshot.connectionState) {
                 case ConnectionState.waiting:
-                  return const Text('Rodando...');
+                  return const Center(child: CircularProgressIndicator());
                 default:
                   return ListView.builder(
                     itemCount: snapshot.data?.length ?? 0,
@@ -37,7 +38,17 @@ class TodoView extends StatelessWidget {
                       TodoEntity item = snapshot.data![index];
 
                       return ListTile(
-                        title: Text(item.title),
+                        title: Text("#${item.id} " + item.title),
+                        onTap: () {
+                          Provider.of<TodoDetailPresenter>(
+                            context,
+                            listen: false,
+                          ).setEntity(item);
+                          Navigator.pushNamed(
+                            context,
+                            '/todo/' + item.id.toString(),
+                          );
+                        },
                       );
                     },
                   );

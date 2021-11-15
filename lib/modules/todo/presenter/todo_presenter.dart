@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pro/modules/todo/entity/todo_entity.dart';
-import 'package:flutter_pro/modules/todo/iterator/todo_list_iterator.dart';
+import 'package:flutter_pro/modules/todo/iteractor/todo_list_iteractor.dart';
 
 class TodoPresenter with ChangeNotifier {
-  final TodoListIterator _iterator = TodoListIterator();
+  final TodoListIteractor _iteractor = TodoListIteractor();
 
   Future<List<TodoEntity>> fetchList() async {
-    return await _iterator.fetchList();
+    return await _iteractor.fetchList();
   }
 }
